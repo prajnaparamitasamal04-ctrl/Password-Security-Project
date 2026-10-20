@@ -1,86 +1,316 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 
 <head>
 
-<title>Verify File</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet"
-href="{{ url_for('static',
-filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>File Integrity Verification</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 
 <body>
 
-<div class="navbar">
+    <!-- =========================
+         NAVIGATION
+         ========================= -->
 
-<a href="/">Home</a>
+    <nav class="navbar">
 
-<a href="/password">Password</a>
+        <a href="/">🏠 Home</a>
 
-<a href="/hash">Hash</a>
+        <a href="/password">🔐 Password</a>
 
-<a href="/verify">Verify</a>
+        <a href="/hash">#️⃣ Hash</a>
 
-</div>
+        <a href="/verify">🛡️ Verify</a>
+
+        <button
+            type="button"
+            class="theme-button"
+            onclick="toggleTheme()">
+
+            🌙 Dark Mode
+
+        </button>
+
+    </nav>
 
 
-<div class="container">
+    <!-- =========================
+         MAIN CONTENT
+         ========================= -->
 
-<div class="card">
+    <main class="verify-page">
 
-<h1>
-🛡 File Verification
-</h1>
+        <div class="verify-card">
 
-<form
-method="POST"
-enctype="multipart/form-data">
+            <!-- Header -->
 
-<input
-type="file"
-name="file">
+            <div class="verify-header">
 
-<br><br>
+                <div class="verify-icon">
+                    🛡️
+                </div>
 
-<input
-type="text"
-name="hash"
-placeholder="Paste SHA256">
+                <div>
 
-<br><br>
+                    <h1>
+                        File Integrity Verification
+                    </h1>
 
-<button>
+                    <p>
+                        Check whether a file has been modified
+                        by comparing its SHA-256 hash.
+                    </p>
 
-Verify
+                </div>
 
-</button>
+            </div>
 
-</form>
 
-<div class="result">
+            <!-- Security Information -->
 
-{{result}}
+            <div class="verify-info">
 
-</div>
+                <span>
+                    🔒
+                </span>
 
-<br>
+                <div>
 
-<a href="/">
+                    <strong>
+                        Secure File Verification
+                    </strong>
 
-<button>
+                    <p>
+                        Upload your file and enter its original
+                        SHA-256 hash to verify its integrity.
+                    </p>
 
-Return Home
+                </div>
 
-</button>
+            </div>
 
-</a>
 
-</div>
+            <!-- =========================
+                 VERIFICATION FORM
+                 ========================= -->
 
-</div>
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+                class="verify-form">
+
+
+                <!-- File Upload -->
+
+                <label class="verify-upload">
+
+                    <div class="verify-upload-icon">
+                        📁
+                    </div>
+
+                    <h2>
+                        Select File
+                    </h2>
+
+                    <p>
+                        Choose the file you want to verify.
+                    </p>
+
+                    <span class="verify-file-button">
+                        Choose File
+                    </span>
+
+                    <input
+                        type="file"
+                        name="file"
+                        required>
+
+                </label>
+
+
+                <!-- SHA-256 Hash -->
+
+                <div class="hash-input-section">
+
+                    <label for="hash">
+
+                        🔑 Original SHA-256 Hash
+
+                    </label>
+
+                    <p>
+                        Paste the original SHA-256 hash of the file.
+                    </p>
+
+                    <input
+                        type="text"
+                        id="hash"
+                        name="hash"
+                        placeholder="Paste SHA-256 hash here"
+                        autocomplete="off"
+                        required>
+
+                </div>
+
+
+                <!-- Verify Button -->
+
+                <button
+                    type="submit"
+                    class="verify-button">
+
+                    🛡️ Verify File Integrity
+
+                </button>
+
+            </form>
+
+
+            <!-- =========================
+                 VERIFICATION RESULT
+                 ========================= -->
+
+            {% if result %}
+
+                {% if result == "Hash Matched" %}
+
+                <div class="verify-result matched">
+
+                    <div class="result-icon">
+                        ✅
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Hash Matched
+                        </h2>
+
+                        <p>
+                            The generated SHA-256 hash matches
+                            the provided hash.
+                        </p>
+
+                        <span>
+                            The file has not been modified.
+                        </span>
+
+                    </div>
+
+                </div>
+
+                {% else %}
+
+                <div class="verify-result mismatch">
+
+                    <div class="result-icon">
+                        ⚠️
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Hash Mismatch
+                        </h2>
+
+                        <p>
+                            The generated SHA-256 hash does not
+                            match the provided hash.
+                        </p>
+
+                        <span>
+                            The file may have been modified.
+                        </span>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            {% endif %}
+
+
+            <!-- Return Home -->
+
+            <div class="verify-home">
+
+                <a href="/" class="verify-home-button">
+
+                    ← Return Home
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
+    <footer class="verify-footer">
+
+        🛡️ Cyber Security Toolkit
+
+        <br>
+
+        <span>
+            File Integrity Verification
+        </span>
+
+    </footer>
+
+
+    <!-- =========================
+         DARK MODE SCRIPT
+         ========================= -->
+
+    <script>
+
+        function toggleTheme() {
+
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+
+                localStorage.setItem("theme", "dark");
+
+            } else {
+
+                localStorage.setItem("theme", "light");
+
+            }
+
+        }
+
+
+        /* Load saved theme */
+
+        window.addEventListener("DOMContentLoaded", function () {
+
+            const savedTheme = localStorage.getItem("theme");
+
+            if (savedTheme === "dark") {
+
+                document.body.classList.add("dark-mode");
+
+            }
+
+        });
+
+    </script>
 
 </body>
 

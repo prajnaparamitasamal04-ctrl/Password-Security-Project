@@ -1,100 +1,306 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 
 <head>
 
-<title>Hash Generator</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet"
-href="{{ url_for('static',
-filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>File Hash Generator</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 
 <body>
 
-<div class="navbar">
+    <!-- =========================
+         NAVIGATION
+         ========================= -->
 
-<a href="/">Home</a>
+    <nav class="navbar">
 
-<a href="/password">Password</a>
+        <a href="/">🏠 Home</a>
 
-<a href="/hash">Hash</a>
+        <a href="/password">🔐 Password</a>
 
-<a href="/verify">Verify</a>
+        <a href="/hash">#️⃣ Hash</a>
 
-</div>
+        <a href="/verify">🛡️ Verify</a>
+
+        <button
+            type="button"
+            class="theme-button"
+            onclick="toggleTheme()">
+            🌙 Dark Mode
+        </button>
+
+    </nav>
 
 
-<div class="container">
+    <!-- =========================
+         HASH GENERATOR
+         ========================= -->
 
-<div class="card">
+    <main class="hash-page">
 
-<h1>
-📁 File Hash Generator
-</h1>
+        <div class="hash-card">
 
-<form
-method="POST"
-enctype="multipart/form-data">
+            <!-- Header -->
 
-<input
-type="file"
-name="file">
+            <div class="hash-header">
 
-<br><br>
+                <div class="hash-icon">
+                    #️⃣
+                </div>
 
-<button>
+                <div>
 
-Generate Hash
+                    <h1>
+                        File Hash Generator
+                    </h1>
 
-</button>
+                    <p>
+                        Generate MD5, SHA-1 and SHA-256
+                        hashes for your file.
+                    </p>
 
-</form>
+                </div>
 
-<br>
+            </div>
 
-{% if hashes %}
 
-<p>
+            <!-- File Upload -->
 
-MD5:
-{{hashes.md5}}
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+                class="hash-form">
 
-</p>
+                <label class="upload-box">
 
-<p>
+                    <div class="upload-icon">
+                        📁
+                    </div>
 
-SHA1:
-{{hashes.sha1}}
+                    <h2>
+                        Select Your File
+                    </h2>
 
-</p>
+                    <p>
+                        Choose a file from your device
+                        to generate its hash values.
+                    </p>
 
-<p>
+                    <span class="choose-file">
+                        Choose File
+                    </span>
 
-SHA256:
-{{hashes.sha256}}
+                    <input
+                        type="file"
+                        name="file"
+                        required>
 
-</p>
+                </label>
 
-{% endif %}
 
-<br>
+                <button
+                    type="submit"
+                    class="hash-button">
 
-<a href="/">
+                    🔐 Generate Hash
 
-<button>
+                </button>
 
-Return Home
+            </form>
 
-</button>
 
-</a>
+            <!-- =========================
+                 HASH RESULTS
+                 ========================= -->
 
-</div>
+            {% if hashes %}
 
-</div>
+            <div class="hash-results">
+
+                <div class="results-title">
+
+                    <span>
+                        ✅
+                    </span>
+
+                    <div>
+
+                        <h2>
+                            Hash Generated Successfully
+                        </h2>
+
+                        <p>
+                            Your file hash values are shown below.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MD5 -->
+
+                <div class="hash-result-card">
+
+                    <div class="hash-result-top">
+
+                        <h3>
+                            MD5
+                        </h3>
+
+                        <span class="hash-badge">
+                            128-bit
+                        </span>
+
+                    </div>
+
+                    <div class="hash-value">
+
+                        <code>
+                            {{ hashes.md5 }}
+                        </code>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SHA-1 -->
+
+                <div class="hash-result-card">
+
+                    <div class="hash-result-top">
+
+                        <h3>
+                            SHA-1
+                        </h3>
+
+                        <span class="hash-badge">
+                            160-bit
+                        </span>
+
+                    </div>
+
+                    <div class="hash-value">
+
+                        <code>
+                            {{ hashes.sha1 }}
+                        </code>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SHA-256 -->
+
+                <div class="hash-result-card">
+
+                    <div class="hash-result-top">
+
+                        <h3>
+                            SHA-256
+                        </h3>
+
+                        <span class="hash-badge">
+                            256-bit
+                        </span>
+
+                    </div>
+
+                    <div class="hash-value">
+
+                        <code>
+                            {{ hashes.sha256 }}
+                        </code>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+
+            <!-- Return Home -->
+
+            <div class="hash-home">
+
+                <a href="/" class="home-button">
+                    ← Return Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
+    <footer class="hash-footer">
+
+        🛡️ Cyber Security Toolkit
+
+        <br>
+
+        <span>
+            File Hash Generator
+        </span>
+
+    </footer>
+
+
+    <!-- =========================
+         DARK MODE SCRIPT
+         ========================= -->
+
+    <script>
+
+        function toggleTheme() {
+
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+
+                localStorage.setItem("theme", "dark");
+
+            } else {
+
+                localStorage.setItem("theme", "light");
+
+            }
+
+        }
+
+
+        /* Load saved theme */
+
+        window.addEventListener("DOMContentLoaded", function () {
+
+            const savedTheme = localStorage.getItem("theme");
+
+            if (savedTheme === "dark") {
+
+                document.body.classList.add("dark-mode");
+
+            }
+
+        });
+
+    </script>
 
 </body>
 
