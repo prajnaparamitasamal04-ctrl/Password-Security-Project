@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Hash Generator</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<a href="/">Home</a>
+
+<a href="/password">Password</a>
+
+<a href="/hash">Hash</a>
+
+<a href="/verify">Verify</a>
+
+</div>
+
+
+<div class="container">
+
+<div class="card">
+
+<h1>
+📁 File Hash Generator
+</h1>
+
+<form
+method="POST"
+enctype="multipart/form-data">
+
+<input
+type="file"
+name="file">
+
+<br><br>
+
+<button>
+
+Generate Hash
+
+</button>
+
+</form>
+
+<br>
+
+{% if hashes %}
+
+<p>
+
+MD5:
+{{hashes.md5}}
+
+</p>
+
+<p>
+
+SHA1:
+{{hashes.sha1}}
+
+</p>
+
+<p>
+
+SHA256:
+{{hashes.sha256}}
+
+</p>
+
+{% endif %}
+
+<br>
+
+<a href="/">
+
+<button>
+
+Return Home
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

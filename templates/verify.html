@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Verify File</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<a href="/">Home</a>
+
+<a href="/password">Password</a>
+
+<a href="/hash">Hash</a>
+
+<a href="/verify">Verify</a>
+
+</div>
+
+
+<div class="container">
+
+<div class="card">
+
+<h1>
+🛡 File Verification
+</h1>
+
+<form
+method="POST"
+enctype="multipart/form-data">
+
+<input
+type="file"
+name="file">
+
+<br><br>
+
+<input
+type="text"
+name="hash"
+placeholder="Paste SHA256">
+
+<br><br>
+
+<button>
+
+Verify
+
+</button>
+
+</form>
+
+<div class="result">
+
+{{result}}
+
+</div>
+
+<br>
+
+<a href="/">
+
+<button>
+
+Return Home
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,814 @@
+/* =========================================
+   PASSWORD SECURITY & FILE INTEGRITY
+   ANALYZER
+   Main Website Stylesheet
+   ========================================= */
+
+
+/* =========================================
+   GENERAL PAGE
+   ========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    padding: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f4f7fb;
+
+    color: #1f2937;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* =========================================
+   NAVIGATION BAR
+   ========================================= */
+
+.navbar {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 15px;
+
+    background: #111827;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.15);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 999;
+}
+
+
+.navbar a {
+    color: white;
+
+    text-decoration: none;
+
+    padding: 10px 16px;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    transition:
+        background 0.3s ease,
+        transform 0.2s ease;
+}
+
+
+.navbar a:hover {
+    background: #2563eb;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+   ========================================= */
+
+.container {
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 30px 0 50px;
+}
+
+
+/* =========================================
+   CARD
+   ========================================= */
+
+.card {
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================================
+   HEADINGS
+   ========================================= */
+
+h1 {
+    margin-top: 0;
+
+    font-size: 36px;
+
+    text-align: center;
+}
+
+
+h2 {
+    margin-top: 25px;
+}
+
+
+h3 {
+    margin-top: 20px;
+}
+
+
+p {
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
+button {
+    background: #2563eb;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 7px;
+
+    padding: 11px 18px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(37, 99, 235, 0.25);
+}
+
+
+button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   INPUT FIELDS
+   ========================================= */
+
+input,
+select {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+input[type="text"],
+input[type="password"],
+input[type="file"] {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    background: white;
+
+    color: #1f2937;
+
+    transition:
+        border 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="file"]:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+select {
+    padding: 9px 12px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 7px;
+
+    background: white;
+
+    color: #1f2937;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+/* =========================================
+   PASSWORD ANALYZER
+   ========================================= */
+
+.password-box {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.password-box input {
+    padding-right: 85px;
+}
+
+
+.show-btn {
+    position: absolute;
+
+    right: 8px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    padding: 6px 10px;
+
+    font-size: 13px;
+
+    background: #475569;
+}
+
+
+.show-btn:hover {
+    background: #334155;
+
+    transform:
+        translateY(-50%);
+}
+
+
+/* =========================================
+   SCORE SECTION
+   ========================================= */
+
+.score-box {
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    text-align: center;
+}
+
+
+.score-bar {
+    width: 100%;
+
+    height: 20px;
+
+    background: #e2e8f0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin: 15px 0;
+}
+
+
+.score-fill {
+    height: 100%;
+
+    width: 0%;
+
+    background: #22c55e;
+
+    border-radius: 20px;
+
+    transition:
+        width 0.5s ease;
+}
+
+
+/* =========================================
+   SECURITY SUGGESTIONS
+   ========================================= */
+
+.suggestions {
+    margin-top: 20px;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    text-align: left;
+}
+
+
+.suggestions h3 {
+    margin-top: 0;
+}
+
+
+.suggestions ul {
+    padding-left: 25px;
+}
+
+
+.suggestions li {
+    margin: 8px 0;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   PASSWORD GENERATOR
+   ========================================= */
+
+.generator {
+    margin-top: 35px;
+
+    padding: 25px;
+
+    border-top: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+}
+
+
+.generator h2 {
+    margin-top: 0;
+}
+
+
+.generator select {
+    margin-left: 5px;
+}
+
+
+#generatedPassword {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 15px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 7px;
+
+    font-size: 16px;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    background: #f8fafc;
+}
+
+
+.copy-btn {
+    margin-top: 10px;
+}
+
+
+/* =========================================
+   HOME PAGE HERO
+   ========================================= */
+
+.hero {
+    text-align: center;
+
+    padding: 45px 20px 30px;
+}
+
+
+.hero h1 {
+    font-size: 42px;
+
+    margin-bottom: 10px;
+}
+
+
+.hero p {
+    font-size: 18px;
+
+    opacity: 0.85;
+}
+
+
+/* =========================================
+   HOME PAGE TOOL CARDS
+   ========================================= */
+
+.tools {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(230px, 1fr)
+        );
+
+    gap: 25px;
+
+    margin-top: 30px;
+}
+
+
+.tool-card {
+    padding: 30px;
+
+    border-radius: 15px;
+
+    border: 1px solid #e2e8f0;
+
+    background: white;
+
+    text-align: center;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease,
+        border 0.3s ease;
+}
+
+
+.tool-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+.tool-icon {
+    font-size: 45px;
+
+    margin-bottom: 15px;
+}
+
+
+.tool-card h2 {
+    margin-top: 5px;
+}
+
+
+.tool-card p {
+    min-height: 70px;
+}
+
+
+.tool-button {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 10px 20px;
+
+    background: #2563eb;
+
+    color: white;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition:
+        background 0.3s ease,
+        transform 0.2s ease;
+}
+
+
+.tool-button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   SECURITY TIP
+   ========================================= */
+
+.security-tip {
+    margin-top: 40px;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    border: 1px solid #e2e8f0;
+
+    background: white;
+
+    text-align: center;
+
+    transition:
+        background 0.3s ease,
+        border 0.3s ease;
+}
+
+
+.security-tip h2 {
+    margin-top: 0;
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+.footer {
+    text-align: center;
+
+    margin-top: 50px;
+
+    padding: 20px;
+
+    opacity: 0.7;
+}
+
+
+/* =========================================
+   DARK / LIGHT MODE BUTTON
+   ========================================= */
+
+.theme-button {
+    position: fixed;
+
+    top: 75px;
+
+    right: 20px;
+
+    z-index: 1000;
+
+    padding: 10px 15px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    background: #2563eb;
+
+    color: white;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.theme-button:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================================
+   DARK MODE
+   ========================================= */
+
+body.dark-mode {
+    background: #0f172a;
+
+    color: #e2e8f0;
+}
+
+
+body.dark-mode .card,
+body.dark-mode .tool-card,
+body.dark-mode .security-tip {
+    background: #1e293b;
+
+    color: #e2e8f0;
+
+    border-color: #334155;
+}
+
+
+body.dark-mode .navbar {
+    background: #020617;
+}
+
+
+body.dark-mode .navbar a {
+    color: #e2e8f0;
+}
+
+
+body.dark-mode .navbar a:hover {
+    background: #2563eb;
+}
+
+
+body.dark-mode input[type="text"],
+body.dark-mode input[type="password"],
+body.dark-mode input[type="file"],
+body.dark-mode select,
+body.dark-mode #generatedPassword {
+    background: #0f172a;
+
+    color: #e2e8f0;
+
+    border-color: #475569;
+}
+
+
+body.dark-mode input::placeholder {
+    color: #94a3b8;
+}
+
+
+body.dark-mode .score-box,
+body.dark-mode .suggestions {
+    background: #0f172a;
+
+    color: #e2e8f0;
+}
+
+
+body.dark-mode .generator {
+    border-top-color: #475569;
+}
+
+
+body.dark-mode .score-bar {
+    background: #334155;
+}
+
+
+body.dark-mode .tool-card {
+    border-color: #334155;
+}
+
+
+body.dark-mode .tool-card:hover {
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-wrap: wrap;
+
+        gap: 5px;
+
+        padding: 10px;
+    }
+
+
+    .navbar a {
+        padding: 8px 10px;
+
+        font-size: 13px;
+    }
+
+
+    .container {
+        width: 94%;
+    }
+
+
+    .card {
+        padding: 22px;
+    }
+
+
+    .hero {
+        padding: 30px 10px 20px;
+    }
+
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+
+    .hero p {
+        font-size: 16px;
+    }
+
+
+    .theme-button {
+        top: 120px;
+
+        right: 10px;
+
+        font-size: 12px;
+
+        padding: 8px 12px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .navbar {
+        justify-content: flex-start;
+    }
+
+
+    .navbar a {
+        font-size: 12px;
+
+        padding: 7px 8px;
+    }
+
+
+    h1 {
+        font-size: 28px;
+    }
+
+
+    .tool-card {
+        padding: 22px;
+    }
+
+
+    .tool-icon {
+        font-size: 38px;
+    }
+
+
+    .theme-button {
+        position: static;
+
+        display: block;
+
+        margin: 10px auto;
+    }
+
+}
